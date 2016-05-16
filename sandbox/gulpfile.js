@@ -18,6 +18,9 @@ gulp.task('eslint', () => {
   .pipe(eslint.format());
 });
 
+
+
+
 gulp.task('build:clear', () => {
   return del([PATHS.dest + '/*']);
 });
