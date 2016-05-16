@@ -4,12 +4,13 @@ const gulp    = require('gulp');
 const webpack = require('webpack-stream');
 const eslint  = require('gulp-eslint');
 const del     = require('del');
+const webpackConfig = require('./webpack.config.js');
 
 const PATHS = {
-  entry:      __dirname + '/entry.js',
-  src:        __dirname + '/src',
-  src__html:  __dirname + '/src/*.html',
-  dest:       __dirname + '/build'
+  entry:      `${__dirname}/entry.js`,
+  src:        `${__dirname}/src`,
+  src__html:  `${__dirname}/src/*.html`,
+  dest:       `${__dirname}/build`,
 };
 
 gulp.task('eslint', () => {
@@ -19,10 +20,8 @@ gulp.task('eslint', () => {
 });
 
 
-
-
 gulp.task('build:clear', () => {
-  return del([PATHS.dest + '/*']);
+  return del([`${PATHS.dest}/*`]);
 });
 gulp.task('build:html', () => {
   return gulp.src(PATHS.src__html)
@@ -30,7 +29,7 @@ gulp.task('build:html', () => {
 });
 gulp.task('build:webpack', () => {
   return gulp.src(PATHS.entry)
-    .pipe(webpack(require(__dirname + '/webpack.config.js')))
+    .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(PATHS.dest));
 });
 gulp.task('build:all', ['eslint', 'build:clear', 'build:html', 'build:webpack'], () => {
