@@ -1,7 +1,7 @@
 {
   "extends": [
-  "eslint:recommended",
-  "airbnb"
+    "eslint:recommended",
+    "airbnb"
   ],
   "rules": {
     "no-console": 0,
@@ -50,5 +50,9 @@
   "ecmaFeatures": {
     "modules": true,
     "experimentalObjectRestSpread": true
-  }
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ]
 }
