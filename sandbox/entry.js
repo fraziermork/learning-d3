@@ -1,3 +1,3 @@
-require('file?name=[name].[ext]!./app/index.html');
+require('file?name=index.html!./src/index.html');
 require('d3');
-require(__dirname + '/app/app.js');
+require(__dirname + '/src/app.js');

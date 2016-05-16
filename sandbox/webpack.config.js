@@ -11,12 +11,17 @@ module.exports = {
     path: PATHS.build,
     filename: 'bundle.js'
   }, 
-  mdoule: {
+  devtool: 'eval', 
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
     loaders: [
       {
-        test: /\.js$/, 
+        test: /\.js|\.jsx$/, 
         loaders: ['babel'],
-        include: __dirname + '/frontend/app'
+        include: __dirname + '/src'
       }, 
       {
         test: /\.css$/,
@@ -36,10 +41,5 @@ module.exports = {
     inline:             true,
     progress:           true,
     stats:              'errors-only'
-  }, 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
-  
-  
+  }
 };

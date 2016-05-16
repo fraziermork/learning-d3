@@ -1,0 +1,35 @@
+'use strict';
+
+const gulp    = require('gulp');
+const webpack = require('webpack-stream');
+const eslint  = require('gulp-eslint');
+const del     = require('del');
+
+const PATHS = {
+  entry:      __dirname + '/entry.js',
+  src:        __dirname + '/src',
+  src__html:  __dirname + '/src/*.html',
+  dest:       __dirname + '/build'
+};
+
+gulp.task('eslint', () => {
+  gulp.src(PATHS.src)
+  .pipe(eslint())
+  .pipe(eslint.format());
+});
+
+gulp.task('build:clear', () => {
+  return del([PATHS.dest + '/*']);
+});
+gulp.task('build:html', () => {
+  return gulp.src(PATHS.src__html)
+    .pipe(gulp.dest(PATHS.dest));
+});
+gulp.task('build:webpack', () => {
+  return gulp.src(PATHS.entry)
+    .pipe(webpack(require(__dirname + '/webpack.config.js')))
+    .pipe(gulp.dest(PATHS.dest));
+});
+gulp.task('build:all', ['eslint', 'build:clear', 'build:html', 'build:webpack'], () => {
+  console.log('----------------REBUILT----------------');
+});
