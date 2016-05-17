@@ -29,10 +29,9 @@
       }
     ], 
     "no-multi-spaces": "off", 
-    "arrow-body-style": [
-      "error", 
-      "always"
-    ]
+    "arrow-body-style": "off", 
+    "no-trailing-spaces": "off",
+    "prefer-const": "off"
   },
   "env": {
     "es6": true,

@@ -1,2 +1,3 @@
-require('d3');
-require(__dirname + '/src/app.js');
+
+// require('./node_modules/bootstrap/dist/css/bootstrap.css');
+require('./src/index.js');
