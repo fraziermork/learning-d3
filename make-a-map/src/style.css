@@ -13,3 +13,14 @@
 .subunit.IRL {
   display: none;
 }
+
+.subunit__boundary {
+  fill: none;
+  stroke: #666;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+
+.subunit__boundary.IRL {
+  stroke: #aaa;
+}

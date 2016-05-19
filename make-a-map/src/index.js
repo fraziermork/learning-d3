@@ -38,5 +38,52 @@ d3.json('uk.json', (err, ukJson) => {
     })
     .attr('d', path);
   
+  svg.append('path')
+    .datum(topojson.mesh(ukJson, ukJson.objects.subunits, (a, b) => {
+      return a !== b && a.id !== 'IRL';
+    }))
+    .attr('d', path)
+    .attr('class', 'subunit__boundary');
+    
+  svg.append('path')
+    .datum(topojson.mesh(ukJson, ukJson.objects.subunits, (a, b) => {
+      return a === b && a.id === 'IRL';
+    }))
+    .attr('d', path)
+    .attr('class', 'subunit__boundary IRL');  
+  
+  svg.append('path')
+    .datum(topojson.feature(ukJson, ukJson.objects.places))
+    .attr('d', path)
+    .attr('class', 'place');
+  
+  svg.selectAll('.place__label')
+    .data(topojson.feature(ukJson, ukJson.objects.places).features)
+    .enter()
+    .append('text')
+    .attr('class', 'place__label')
+    .attr('transform', (d) => {
+      return `translate(${projection(d.geometry.coordinates)})`;
+    })
+    .attr('dy', '.35em')
+    .attr('x', (d) => {
+      return d.geometry.coordinates[0] > -1 ? 6 : -6;
+    })
+    .attr('text-anchor', (d) => {
+      return d.geometry.coordinates[0] > -1 ? 'start' : 'end';
+    })
+    .text((d) => {
+      return d.properties.name;
+    });
+  
+
   
 });
+
+
+/** 
+* QUESTIONS:
+* Difference between data and datum?
+* what does topojson do in general?
+* what do feature and mesh do exactly?
+*/
