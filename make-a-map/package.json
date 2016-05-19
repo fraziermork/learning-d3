@@ -1,0 +1,31 @@
+{
+  "name": "make-a-map",
+  "version": "1.0.0",
+  "description": "[I built this by following Mike Bostock's tutorial \"Let's make a map\"](https://bost.ocks.org/mike/map/)",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build:all",
+    "start": "webpack-dev-server"
+  },
+  "author": "Frazier Mork <fraziermork@gmail.com> (https://frazier-fibonacci.herokuapp.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "d3": "^3.5.17",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "style-loader": "^0.13.1",
+    "topojson": "^1.6.26",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-stream": "^3.2.0"
+  },
+  "devDependencies": {
+    "gulp-eslint": "^2.0.0"
+  }
+}
