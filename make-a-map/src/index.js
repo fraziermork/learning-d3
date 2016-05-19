@@ -29,6 +29,10 @@ d3.json('uk.json', (err, ukJson) => {
   //   .datum(subunits)
   //   .attr('d', path);
   
+  
+  ////////////////////////////////////////////////////////////
+  // SUBUNITS
+  ////////////////////////////////////////////////////////////
   svg.selectAll('.subunit')
     .data(subunits.features)
     .enter()
@@ -52,6 +56,27 @@ d3.json('uk.json', (err, ukJson) => {
     .attr('d', path)
     .attr('class', 'subunit__boundary IRL');  
   
+  
+  svg.selectAll('.subunit__label')
+    .data(topojson.feature(ukJson, ukJson.objects.subunits).features)
+    .enter()
+    .append('text')
+    .attr('class', (d) => {
+      return `subunit__label ${d.id}`;
+    })
+    .attr('transform', (d) => {
+      return `translate(${path.centroid(d)})`;
+    })
+    .attr('dy', '.35em')
+    .text((d) => {
+      return d.properties.name;
+    });
+  
+  
+  
+  ////////////////////////////////////////////////////////////
+  // PLACES
+  ////////////////////////////////////////////////////////////
   svg.append('path')
     .datum(topojson.feature(ukJson, ukJson.objects.places))
     .attr('d', path)
